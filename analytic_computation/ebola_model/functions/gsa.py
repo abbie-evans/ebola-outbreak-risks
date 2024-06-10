@@ -13,6 +13,21 @@ class Model:
         self.p_h_values = []
 
     def find_p_q(self, solution):
+        """Method calculates a list of probabilities of a major outbreak given
+        the probability that an outbreak does not occur.
+
+        Parameters
+        ----------
+        solution : array
+            Probabilities that an outbreak occurs and is treated
+            initially in the community and in a healthcare facility
+
+        Returns
+        -------
+        tuple[list, list]
+            List of probabilities that an outbreak occurs and is treated
+            initially in the community and in a healthcare facility
+        """
         self.q_c_values.append(solution[0])
         self.q_h_values.append(solution[2])
         if 1 - solution[0] < 0:
@@ -27,6 +42,22 @@ class Model:
 
     @staticmethod
     def evaluate(X, r_f=5.9):
+        """Method that determines the probability of a major outbreak for
+        certain parameter values X and stores the results in a matrix.
+        
+        Parameters
+        ----------
+        X : np.array
+            Array of the model variables
+        r_f : float
+            Average expected number of infections from an unsafe burial
+            
+        Returns
+        -------
+        np.array
+            Probabilities that an outbreak occurs and is treated
+            initially in the community
+        """
         Y = np.zeros(X.shape[0])
         for i in range(X.shape[0]):
             def equations(vars):
@@ -49,6 +80,25 @@ class Model:
         return Y
     
     def evaluate_h(self, h, X, r_f=5.9):
+        """Method that determines the probability of a major outbreak for
+        certain parameter values X and different h values, and stores the 
+        results in a matrix.
+        
+        Parameters
+        ----------
+        h : float
+            Probability of hospitalisation
+        X : np.array
+            Array of the model variables
+        r_f : float
+            Average expected number of infections from an unsafe burial
+        
+        Returns
+        -------
+        np.array
+            Probabilities that an outbreak occurs and is treated
+            initially in a healthcare facility
+        """
         Y = np.zeros(X.shape[0])
         for i in range(X.shape[0]):
             def equations(vars):
