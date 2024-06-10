@@ -1,0 +1,37 @@
+import matplotlib.pyplot as plt
+import numpy as np
+
+from ebola_model.functions import probability as p
+from ebola_model.functions import intervention_combinations as ic
+
+def plot_results(matrix):
+        matrix = np.flip(matrix, axis=0)
+
+        plt.figure(figsize = [8, 6])
+        plt.imshow(matrix, cmap='viridis_r')
+        cbar = plt.colorbar()
+        cbar.set_label('Probability of major outbreak', fontsize=18, labelpad=10)
+        cbar.ax.tick_params(labelsize=18)
+
+        plt.ylim(top=0, bottom=len(matrix) - 1)
+        plt.xlim(left=0, right=len(matrix) - 1)
+        plt.xlabel('Probability of treatment in a' + '\n' +
+                   r'healthcare facility ($p_h$)', fontsize=20, labelpad=10)
+        plt.ylabel('Number of community' + '\n' + r'infections ($R_C$)',
+                   fontsize=20, multialignment='center', labelpad=10)
+
+        ax = plt.gca()
+        ax.set_xticks(np.linspace(0, len(c) - 1, 6),
+                      [f'{label:.0f}' if label == 0 else f'{label:.1f}' for
+                       label in np.linspace(0, 1, 6)], fontsize=18)
+        ax.set_yticks(np.linspace(0, len(c) - 1, 6),
+                      [f'{label:.0f}' if label == 0 else f'{label:.2f}' for
+                       label in np.linspace(r[0]*2, 0, 6)], fontsize=18)
+        plt.tight_layout()
+        plt.show()
+
+model = p.PMO(0.7, 0.4/0.7, 173/27, 28/173, 5.9, 0.25, 4, 0.2)
+r = model.variables()
+c, h = ic.Combination.hospitalisation_community(*r, model=model)
+plot_results(c)
+plot_results(h)
