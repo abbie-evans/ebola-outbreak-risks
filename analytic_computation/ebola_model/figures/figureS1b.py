@@ -10,8 +10,10 @@ def plot_results(matrix):
         plt.figure(figsize = [8, 6])
         plt.imshow(matrix, cmap='viridis_r')
         cbar = plt.colorbar()
-        cbar.set_label('Probability of major outbreak', fontsize=18, labelpad=10)
+        cbar.set_label(r'Probability of major outbreak $(\pi_H)$', fontsize=18, labelpad=10)
         cbar.ax.tick_params(labelsize=18)
+        cbar.ax.set_yticks(np.linspace(0, 0.5, 6))
+        cbar.ax.set_yticklabels([0, 0.1, 0.2, 0.3, 0.4, 0.5], fontsize=18)
 
         plt.ylim(top=0, bottom=len(matrix) - 1)
         plt.xlim(left=0, right=len(matrix) - 1)

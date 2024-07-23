@@ -29,7 +29,10 @@ def finding_indices():
     plt.figure(figsize = [8, 6])
     plt.bar(problem['names'], Si['S1'], yerr=Si['S1_conf'], capsize=5)
     plt.ylabel('First-order Sobol\' indices', fontsize=20, labelpad=10)
+    plt.xlabel(r'Parameter ($\it{x}$)', fontsize=20, labelpad=10)
     plt.tick_params(labelsize=18, axis='both')
+    ytick_labels = [0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4]
+    plt.gca().set_yticklabels(ytick_labels)
     plt.ylim(0, 0.4)
     ax = plt.gca()
     ax.spines['top'].set_visible(False)
@@ -40,7 +43,10 @@ def finding_indices():
     plt.figure(figsize = [8, 6])
     plt.bar(problem['names'], Si['ST'], yerr=Si['ST_conf'], capsize=5)
     plt.ylabel('Total-order Sobol\' indices', fontsize=20, labelpad=10)
+    plt.xlabel(r'Parameter ($\it{x}$)', fontsize=20, labelpad=10)
     plt.tick_params(labelsize=18, axis='both')
+    ytick_labels = [0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4]
+    plt.gca().set_yticklabels(ytick_labels)
     plt.ylim(0, 0.4)
     ax = plt.gca()
     ax.spines['top'].set_visible(False)
@@ -88,12 +94,10 @@ def varying_h():
     plt.xlim(0, 1)
     plt.ylim(0, 1)
     ax = plt.gca()
-    ax.set_xticks(np.linspace(0, 1, 6), [f'{label:.0f}' if label == 0 else
-                                            f'{label:.1f}' for label in
-                                            np.linspace(0, 1, 6)], fontsize=18)
-    ax.set_yticks(np.linspace(0, 1, 6), [f'{label:.0f}' if label == 0 else
-                                            f'{label:.1f}' for label in
-                                            np.linspace(0, 1, 6)], fontsize=18)
+    ax.set_xticks(np.linspace(0, 1, 6))
+    ax.set_xticklabels([0, 0.2, 0.4, 0.6, 0.8, 1], fontsize=18)
+    ax.set_yticks(np.linspace(0, 1, 6))
+    ax.set_yticklabels([0, 0.2, 0.4, 0.6, 0.8, 1], fontsize=18)
     ax.spines['top'].set_visible(False)
     ax.spines['right'].set_visible(False)
     plt.tight_layout()
@@ -111,12 +115,10 @@ def varying_h():
     plt.xlim(0, 1)
     plt.ylim(0, 1)
     ax = plt.gca()
-    ax.set_xticks(np.linspace(0, 1, 6), [f'{label:.0f}' if label == 0 else
-                                            f'{label:.1f}' for label in
-                                            np.linspace(0, 1, 6)], fontsize=18)
-    ax.set_yticks(np.linspace(0, 1, 6), [f'{label:.0f}' if label == 0 else
-                                            f'{label:.1f}' for label in
-                                            np.linspace(0, 1, 6)], fontsize=18)
+    ax.set_xticks(np.linspace(0, 1, 6))
+    ax.set_xticklabels([0, 0.2, 0.4, 0.6, 0.8, 1], fontsize=18)
+    ax.set_yticks(np.linspace(0, 1, 6))
+    ax.set_yticklabels([0, 0.2, 0.4, 0.6, 0.8, 1], fontsize=18)
     ax.spines['top'].set_visible(False)
     ax.spines['right'].set_visible(False)
     plt.tight_layout()

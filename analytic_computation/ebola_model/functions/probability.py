@@ -134,17 +134,18 @@ class PMO:
         self.q_h_values = []
         self.p_c_values = []
         self.p_h_values = []
-        for phi in np.linspace(5.9, 0, 1000):
-
+        for p_f in np.linspace(0.4/0.7, 0, 1000):
             def equations(vars):
                 x, y, z = vars
-                eq1 = (r[0]*(1-h))/(r[0]+1) * x**2 + (r[0]*h)/(r[0]+1) *x*z +\
-                    r[1]/(r[0]+1) *y + (1-r[1])/(r[0]+1) - x
-                eq2 = (phi*(1-h))/(phi+1) * x*y + (phi*h)/(phi+1) * y*z +\
-                    1/(phi+1) - y
-                eq3 = (r[3]*(1-h))/(r[3]+(r[4]/0.2*alpha)+1) *x*z +\
-                    (h*r[3]+r[4]/0.2*alpha)/(r[3]+(r[4]/0.2*alpha)+1) * z**2 +\
-                    1/(r[3]+(r[4]/0.2*alpha)+1) - z
+                eq1 = (r[0]*(1 - h)) / (r[0] + 1) *x**2 +\
+                          (r[0]*h) / (r[0] + 1) *x*z +\
+                          0.7*p_f / (r[0] + 1) *y +\
+                          (1 - 0.7*p_f) / (r[0] + 1) - x
+                eq2 = (r[2]*(1 - h)) / (r[2] + 1) *x*y +\
+                        (r[2]*h) / (r[2] + 1) *y*z + 1 / (r[2] + 1) - y
+                eq3 = (r[3]*(1 - h)) / (r[3] + r[4]/0.2*alpha + 1) *x*z +\
+                        (h*r[3] + r[4]/0.2*alpha) / (r[3] + r[4]/0.2*alpha + 1) * z**2 +\
+                        1 / (r[3] + r[4]/0.2*alpha + 1) - z
                 return [eq1, eq2, eq3]
 
             solution = root(equations, [0.5, 0.5, 0.5], method='lm')

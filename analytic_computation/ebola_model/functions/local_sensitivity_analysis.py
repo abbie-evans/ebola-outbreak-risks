@@ -34,8 +34,8 @@ class LSA:
         for r_c_ in x:
             p_c_values, p_h_values = p.PMO.pmo(r_c_, r[1], r[2], r[3], r[4], h)
         gradient_c, gradient_h = np.gradient(p_c_values, x), np.gradient(p_h_values, x)
-        self.gradients_c.append(gradient_c[5000]*(np.max(x)-np.min(x)))
-        self.gradients_h.append(gradient_h[5000]*(np.max(x)-np.min(x)))
+        self.gradients_c.append(gradient_c[5000]*r[0])
+        self.gradients_h.append(gradient_h[5000]*r[0])
         return p_c_values, p_h_values, x
 
     def plot_community_infections(self, r, h):
@@ -51,13 +51,13 @@ class LSA:
         """
         p_c_values, p_h_values, x = self.community_infections(r, h)
 
-        plt.figure(figsize = [7, 5])
+        plt.figure(figsize = [8, 6])
         plt.plot(x, p_c_values, label='First case C', color='red')
         plt.plot(x, p_h_values, label='First case H', color='blue')
         plt.axvline(x=r[0], linestyle='--', color='black')
         plt.xlabel(r'Number of community infections ($R_c$)',
-                fontsize=18, labelpad=10)
-        plt.ylabel('Probability of a major outbreak', fontsize=18, labelpad=10)
+                fontsize=20, labelpad=10)
+        plt.ylabel('Probability of a major outbreak', fontsize=20, labelpad=10)
         plt.xlim(x[0], x[-1])
         plt.ylim(0, 1)
         plt.legend(loc='upper left', fontsize=18)
@@ -66,8 +66,8 @@ class LSA:
                     [f'{label:.0f}' if label == 0 else f'{label:.1f}' for
                     label in np.linspace(x[0], np.round(x[-1], 1), 6)],
                     fontsize=18)
-        ax.set_yticklabels([f'{label:.0f}' if label == 0 else f'{label:.1f}' for
-                            label in np.linspace(0, 1, 6)], fontsize=18)
+        ax.set_yticks(np.linspace(0, 1, 6))
+        ax.set_yticklabels([0, 0.2, 0.4, 0.6, 0.8, 1], fontsize=18)
         ax.spines['top'].set_visible(False)
         ax.spines['right'].set_visible(False)
         plt.tight_layout()
@@ -99,8 +99,8 @@ class LSA:
         for p_f in x:
             p_c_values, p_h_values = p.PMO.pmo(r[0], r[1]/(0.4/0.7)*p_f, r[2], r[3], r[4], h)
         gradient_c, gradient_h = np.gradient(p_c_values, x), np.gradient(p_h_values, x)
-        self.gradients_c.append(gradient_c[5714]*(np.max(x)-np.min(x)))
-        self.gradients_h.append(gradient_h[5714]*(np.max(x)-np.min(x)))
+        self.gradients_c.append(gradient_c[5714]*(0.4/0.7))
+        self.gradients_h.append(gradient_h[5714]*(0.4/0.7))
         return p_c_values, p_h_values, x
 
     def plot_funeral_infections(self, r, h):
@@ -116,23 +116,21 @@ class LSA:
         """
         p_c_values, p_h_values, x = self.funeral_infections(r, h)
 
-        plt.figure(figsize = [7, 5])
+        plt.figure(figsize = [8, 6])
         plt.plot(x, p_c_values, label='First case C', color='red')
         plt.plot(x, p_h_values, label='First case H', color='blue')
         plt.axvline(x=0.4/0.7, linestyle='--', color='black')
         plt.xlabel(r'Probability of unsafe burial given death ($p_f$)',
-                fontsize=18, labelpad=10)
-        plt.ylabel('Probability of a major outbreak', fontsize=18, labelpad=10)
+                fontsize=20, labelpad=10)
+        plt.ylabel('Probability of a major outbreak', fontsize=20, labelpad=10)
         plt.xlim(x[0], x[-1])
         plt.ylim(0, 1)
         plt.legend(loc='upper left', fontsize=18)
         ax = plt.gca()
-        ax.set_xticks(np.linspace(x[0], np.round(x[-1], 1), 6),
-                    [f'{label:.0f}' if label == 0 else f'{label:.1f}' for
-                    label in np.linspace(x[0], np.round(x[-1], 1), 6)],
-                    fontsize=18)
-        ax.set_yticklabels([f'{label:.0f}' if label == 0 else f'{label:.1f}' for
-                            label in np.linspace(0, 1, 6)], fontsize=18)
+        ax.set_xticks(np.linspace(0, 1, 6))
+        ax.set_xticklabels([0, 0.2, 0.4, 0.6, 0.8, 1], fontsize=18)
+        ax.set_yticks(np.linspace(0, 1, 6))
+        ax.set_yticklabels([0, 0.2, 0.4, 0.6, 0.8, 1], fontsize=18)
         ax.spines['top'].set_visible(False)
         ax.spines['right'].set_visible(False)
         plt.tight_layout()
@@ -164,8 +162,8 @@ class LSA:
         for r_v_ in x:
             p_c_values, p_h_values = p.PMO.pmo(r[0], r[1], r[2], r_v_, r[4], h)
         gradient_c, gradient_h = np.gradient(p_c_values, x), np.gradient(p_h_values, x)
-        self.gradients_c.append(gradient_c[5000]*(np.max(x)-np.min(x)))
-        self.gradients_h.append(gradient_h[5000]*(np.max(x)-np.min(x)))
+        self.gradients_c.append(gradient_c[5000]*r[3])
+        self.gradients_h.append(gradient_h[5000]*r[3])
         return p_c_values, p_h_values, x
 
     def plot_hospital_visitors(self, r, h):
@@ -181,13 +179,13 @@ class LSA:
         """
         p_c_values, p_h_values, x = self.hospital_visitors(r, h)
 
-        plt.figure(figsize = [7, 5])
+        plt.figure(figsize = [8, 6])
         plt.plot(x, p_c_values, label='First case C', color='red')
         plt.plot(x, p_h_values, label='First case H', color='blue')
         plt.axvline(x=r[3], linestyle='--', color='black')
         plt.xlabel(r'Number of visitor infections ($R_v$)',
-                fontsize=18, labelpad=10)
-        plt.ylabel('Probability of a major outbreak', fontsize=18, labelpad=10)
+                fontsize=20, labelpad=10)
+        plt.ylabel('Probability of a major outbreak', fontsize=20, labelpad=10)
         plt.xlim(x[0], x[-1])
         plt.ylim(0, 1)
         plt.legend(loc='upper left', fontsize=18)
@@ -196,8 +194,8 @@ class LSA:
                     [f'{label:.0f}' if label == 0 else f'{label:.1f}' for
                     label in np.linspace(x[0], np.round(x[-1], 1), 6)],
                     fontsize=18)
-        ax.set_yticklabels([f'{label:.0f}' if label == 0 else f'{label:.1f}' for
-                            label in np.linspace(0, 1, 6)], fontsize=18)
+        ax.set_yticks(np.linspace(0, 1, 6))
+        ax.set_yticklabels([0, 0.2, 0.4, 0.6, 0.8, 1], fontsize=18)
         ax.spines['top'].set_visible(False)
         ax.spines['right'].set_visible(False)
         plt.tight_layout()
@@ -229,8 +227,8 @@ class LSA:
         for r_w_ in x:
             p_c_values, p_h_values = p.PMO.pmo(r[0], r[1], r[2], r[3], r_w_, h)
         gradient_c, gradient_h = np.gradient(p_c_values, x), np.gradient(p_h_values, x)
-        self.gradients_c.append(gradient_c[5000]*(np.max(x)-np.min(x)))
-        self.gradients_h.append(gradient_h[5000]*(np.max(x)-np.min(x)))
+        self.gradients_c.append(gradient_c[5000]*r[4])
+        self.gradients_h.append(gradient_h[5000]*r[4])
         return p_c_values, p_h_values, x
 
     def plot_hcw_infections(self, r, h):
@@ -246,13 +244,13 @@ class LSA:
         """
         p_c_values, p_h_values, x = self.hcw_infections(r, h)
 
-        plt.figure(figsize = [7, 5])
+        plt.figure(figsize = [8, 6])
         plt.plot(x, p_c_values, label='First case C', color='red')
         plt.plot(x, p_h_values, label='First case H', color='blue')
         plt.axvline(x=r[4], linestyle='--', color='black')
         plt.xlabel(r'Number of healthcare worker infections ($R_w$)',
-                fontsize=18, labelpad=10)
-        plt.ylabel('Probability of a major outbreak', fontsize=18, labelpad=10)
+                fontsize=20, labelpad=10)
+        plt.ylabel('Probability of a major outbreak', fontsize=20, labelpad=10)
         plt.xlim(x[0], x[-1])
         plt.ylim(0, 1)
         plt.legend(loc='upper left', fontsize=18)
@@ -261,9 +259,8 @@ class LSA:
                     [f'{label:.0f}' if label == 0 else f'{label:.1f}' for
                     label in np.linspace(x[0], np.round(x[-1], 1), 6)],
                     fontsize=18)
-        ax.set_yticks(np.linspace(0, 1, 6),
-                      [f'{label:.0f}' if label == 0 else f'{label:.1f}' for
-                            label in np.linspace(0, 1, 6)], fontsize=18)
+        ax.set_yticks(np.linspace(0, 1, 6))
+        ax.set_yticklabels([0, 0.2, 0.4, 0.6, 0.8, 1], fontsize=18)
         ax.spines['top'].set_visible(False)
         ax.spines['right'].set_visible(False)
         plt.tight_layout()
@@ -295,8 +292,8 @@ class LSA:
         for h_ in np.linspace(1, 0, 10000):
             p_c_values, p_h_values = p.PMO.pmo(r[0], r[1], r[2], r[3], r[4], h_)
         gradient_c, gradient_h = np.gradient(p_c_values, x), np.gradient(p_h_values, x)
-        self.gradients_c.append(gradient_c[4000]*(np.max(x)-np.min(x)))
-        self.gradients_h.append(gradient_h[4000]*(np.max(x)-np.min(x)))
+        self.gradients_c.append(gradient_c[4000]*0.4)
+        self.gradients_h.append(gradient_h[4000]*0.4)
         return p_c_values, p_h_values, x
 
     def plot_hosp_pmo(self, r, h):
@@ -312,61 +309,22 @@ class LSA:
         """
         p_c_values, p_h_values, x = self.hosp_pmo(r, h)
 
-        plt.figure(figsize = [7, 5])
+        plt.figure(figsize = [8, 6])
         plt.plot(x, p_c_values, label='First case C', color='red')
         plt.plot(x, p_h_values, label='First case H', color='blue')
         plt.axvline(x=1-h, linestyle='--', color='black')
         plt.xlabel(r'Probability of treatment in the community ($1-p_h$)',
-                fontsize=18, labelpad=10)
-        plt.ylabel('Probability of a major outbreak', fontsize=18, labelpad=10)
+                fontsize=20, labelpad=10)
+        plt.ylabel('Probability of a major outbreak', fontsize=20, labelpad=10)
         plt.xlim(0, 1)
         plt.ylim(0, 1)
         plt.legend(loc='upper left', fontsize=18)
         ax = plt.gca()
-        ax.set_xticks(np.linspace(0, 1, 6),
-                    [f'{label:.0f}' if label == 0 else f'{label:.1f}' for
-                    label in np.linspace(0, 1, 6)],
-                    fontsize=18)
-        ax.set_yticklabels([f'{label:.0f}' if label == 0 else f'{label:.1f}' for
-                            label in np.linspace(0, 1, 6)], fontsize=18)
+        ax.set_xticks(np.linspace(0, 1, 6))
+        ax.set_xticklabels([0, 0.2, 0.4, 0.6, 0.8, 1], fontsize=18)
+        ax.set_yticks(np.linspace(0, 1, 6))
+        ax.set_yticklabels([0, 0.2, 0.4, 0.6, 0.8, 1], fontsize=18)
         ax.spines['top'].set_visible(False)
         ax.spines['right'].set_visible(False)
         plt.tight_layout()
         plt.show()
-
-    def lsa_varying_h(self, r):
-        """Method calculates the gradient of the variables against h,
-        varying the probability of treatment in a healthcare facility.
-        
-        Parameters
-        ----------
-        r : tuple
-            Parameters that define the model
-            
-        Returns
-        -------
-        array
-            Array of the gradients of the probability of a major outbreak
-            given the probability of treatment in a healthcare facility.
-        """
-        gradients_matrix = []
-        self.gradients_c = []
-        for h in np.linspace(0, 1, 22):
-            self.community_infections(r, h)
-        gradients_matrix.append(self.gradients_c)
-        self.gradients_c = []
-        for h in np.linspace(0, 1, 22):
-            self.funeral_infections(r, h)
-        gradients_matrix.append(self.gradients_c)
-        self.gradients_c = []
-        for h in np.linspace(0, 1, 22):
-            self.hospital_visitors(r, h)
-        gradients_matrix.append(self.gradients_c)
-        self.gradients_c = []
-        for h in np.linspace(0, 1, 22):
-            self.hcw_infections(r, h)
-        gradients_matrix.append(self.gradients_c)
-        matrix = np.array(gradients_matrix)
-        column_sums = matrix.sum(axis=0)
-        normalized_matrix = matrix / column_sums[np.newaxis, :] # Normalise the rates such that they sum to 1 at each p_h
-        return normalized_matrix
