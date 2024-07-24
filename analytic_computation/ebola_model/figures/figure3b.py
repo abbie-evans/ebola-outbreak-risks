@@ -5,7 +5,7 @@ from ebola_model.functions import probability as p
 
 def plot_pmo_param(p_values, parameter, color, linestyle, label):
     """Plot the probabilty of a major outbreak against the uptake of safe
-    burial practices (g)
+    burial practices
     """
     plt.plot(parameter, p_values[0], color=color, linestyle=linestyle, label=label)
     plt.xlabel('Additional compliance with safe burial practices (%)', fontsize=20,
@@ -26,6 +26,7 @@ model = p.PMO(0.7, 0.4/0.7, 173/27, 28/173, 5.9, 0.25, 4, 0.2)
 r = model.variables()
 
 # Plot with increased effectiveness of barrier nursing
+plt.figure(figsize=[8, 6])
 plot_pmo_param(model.pmo_burial_compliance(0.5, r),
                np.linspace(0, 0.4/0.7, 1000), color='green', linestyle='-', label='50%')
 plot_pmo_param(model.pmo_burial_compliance(0.3, r),

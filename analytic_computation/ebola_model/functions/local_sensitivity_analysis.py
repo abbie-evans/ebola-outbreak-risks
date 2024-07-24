@@ -55,7 +55,7 @@ class LSA:
         plt.plot(x, p_c_values, label='First case C', color='red')
         plt.plot(x, p_h_values, label='First case H', color='blue')
         plt.axvline(x=r[0], linestyle='--', color='black')
-        plt.xlabel(r'Number of community infections ($R_c$)',
+        plt.xlabel(r'Number of community infections ($R_C$)',
                 fontsize=20, labelpad=10)
         plt.ylabel('Probability of a major outbreak', fontsize=20, labelpad=10)
         plt.xlim(x[0], x[-1])
@@ -183,7 +183,7 @@ class LSA:
         plt.plot(x, p_c_values, label='First case C', color='red')
         plt.plot(x, p_h_values, label='First case H', color='blue')
         plt.axvline(x=r[3], linestyle='--', color='black')
-        plt.xlabel(r'Number of visitor infections ($R_v$)',
+        plt.xlabel(r'Number of visitor infections ($R_V$)',
                 fontsize=20, labelpad=10)
         plt.ylabel('Probability of a major outbreak', fontsize=20, labelpad=10)
         plt.xlim(x[0], x[-1])
@@ -248,7 +248,7 @@ class LSA:
         plt.plot(x, p_c_values, label='First case C', color='red')
         plt.plot(x, p_h_values, label='First case H', color='blue')
         plt.axvline(x=r[4], linestyle='--', color='black')
-        plt.xlabel(r'Number of healthcare worker infections ($R_w$)',
+        plt.xlabel(r'Number of healthcare worker infections ($R_W$)',
                 fontsize=20, labelpad=10)
         plt.ylabel('Probability of a major outbreak', fontsize=20, labelpad=10)
         plt.xlim(x[0], x[-1])
