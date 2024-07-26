@@ -16,7 +16,7 @@ def finding_indices():
                'bounds': [[0, 56/27], [0, 1], [0, 0.5], [0, 1.6*28/27], [0, 1]]}
 
     # Generate samples
-    param_values = sample(problem, 8192, calc_second_order=False)
+    param_values = sample(problem, 65536, calc_second_order=False)
 
     # Run the model
     m = gsa.Model()
