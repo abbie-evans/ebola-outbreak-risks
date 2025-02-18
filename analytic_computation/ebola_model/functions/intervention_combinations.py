@@ -54,6 +54,10 @@ class Combination:
 
                 solution = root(equations, [0.5, 0.5, 0.5], method='lm')
                 p_c_value, p_h_value = model.find_p_q_combination(solution.x)
+                if p_c_value < 1e-11:
+                    p_c_value = 0
+                if p_h_value < 1e-11:
+                    p_h_value = 0
                 solution_c_matrix[i, j] = p_c_value
                 solution_h_matrix[i, j] = p_h_value
         return solution_c_matrix, solution_h_matrix
@@ -109,6 +113,10 @@ class Combination:
 
                 solution = root(equations, [0.5, 0.5, 0.5], method='lm')
                 p_c_value, p_h_value = model.find_p_q_combination(solution.x)
+                if p_c_value < 1e-11:
+                    p_c_value = 0
+                if p_h_value < 1e-11:
+                    p_h_value = 0
                 solution_c_matrix[i, j] = p_c_value
                 solution_h_matrix[i, j] = p_h_value
         return solution_c_matrix, solution_h_matrix

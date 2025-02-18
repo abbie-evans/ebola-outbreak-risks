@@ -27,7 +27,7 @@ def finding_indices():
 
     # Plot the sensitivity indices with error bars
     plt.figure(figsize = [8, 6])
-    plt.bar(problem['names'], Si['S1'], yerr=Si['S1_conf'], capsize=5)
+    plt.bar(problem['names'], Si['S1'])
     plt.ylabel('First-order Sobol\' indices', fontsize=20, labelpad=10)
     plt.xlabel(r'Parameter ($\it{x}$)', fontsize=20, labelpad=10)
     plt.tick_params(labelsize=18, axis='both')
@@ -41,7 +41,7 @@ def finding_indices():
     plt.show()
 
     plt.figure(figsize = [8, 6])
-    plt.bar(problem['names'], Si['ST'], yerr=Si['ST_conf'], capsize=5)
+    plt.bar(problem['names'], Si['ST'])
     plt.ylabel('Total-order Sobol\' indices', fontsize=20, labelpad=10)
     plt.xlabel(r'Parameter ($\it{x}$)', fontsize=20, labelpad=10)
     plt.tick_params(labelsize=18, axis='both')
