@@ -13,6 +13,10 @@ def plot_results_c(matrix):
         cbar.set_label(r'Probability of major outbreak ($\pi_C$)', fontsize=18, labelpad=10)
         cbar.ax.tick_params(labelsize=18)
 
+        # Plot the contour lines
+        levels = [0.2, 0.3, 0.4, 0.5, 0.6, 0.7]
+        plt.contour(matrix, levels=levels, colors='w', linestyles=':', linewidths=1.5)
+
         plt.ylim(top=0, bottom=len(matrix) - 1)
         plt.xlim(left=0, right=len(matrix) - 1)
         plt.xlabel('Probability of treatment in a' + '\n' +
@@ -41,6 +45,10 @@ def plot_results_h(matrix):
         cbar.set_label(r'Probability of major outbreak ($\pi_H$)', fontsize=18, labelpad=10)
         cbar.ax.set_yticks(np.linspace(0.1, 0.3, 5))
         cbar.ax.set_yticklabels([0.1, 0.15, 0.2, 0.25, 0.3], fontsize=18)
+
+        # Plot the contour lines
+        levels = [0.1, 0.15, 0.2, 0.25, 0.3]
+        plt.contour(matrix, levels=levels, colors='w', linestyles=':', linewidths=1.5)
 
         plt.ylim(top=0, bottom=len(matrix) - 1)
         plt.xlim(left=0, right=len(matrix) - 1)

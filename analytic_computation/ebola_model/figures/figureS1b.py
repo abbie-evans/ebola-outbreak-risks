@@ -15,6 +15,10 @@ def plot_results(matrix):
         cbar.ax.set_yticks(np.linspace(0, 0.5, 6))
         cbar.ax.set_yticklabels([0, 0.1, 0.2, 0.3, 0.4, 0.5], fontsize=18)
 
+        # Plot the contour lines
+        levels = [0, 0.1, 0.2, 0.3, 0.4, 0.5]
+        plt.contour(matrix, levels=levels, colors='w', linestyles=':', linewidths=1.5)
+
         plt.ylim(top=0, bottom=len(matrix) - 1)
         plt.xlim(left=0, right=len(matrix) - 1)
         plt.xlabel(r'Number of visitor infections ($R_V$)', fontsize=20,

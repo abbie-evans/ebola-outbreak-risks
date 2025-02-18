@@ -15,6 +15,10 @@ def plot_results(matrix):
         cbar.ax.set_yticks(np.linspace(0, 0.7, 8))
         cbar.ax.set_yticklabels([0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7], fontsize=18)
 
+        # Plot the contour lines
+        levels = [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7]
+        plt.contour(matrix, levels=levels, colors='w', linewidth=1.5, linestyles=':')
+
         # Plot white markers
         plt.plot(0.4/0.7*len(matrix), len(matrix)//2, 'wo')
         plt.plot(0.4/0.7*len(matrix), 286, 'wo') # Plot point where alpha=0.019
