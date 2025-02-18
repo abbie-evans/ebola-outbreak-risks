@@ -1,6 +1,6 @@
 # ebola-outbreak-risks
 
-Code for reproducing the results presented in 'Combinations of non-pharmaceutical interventions are required to eliminate the risk of major Ebola outbreaks: A mathematical modelling study'
+Code for reproducing the results presented in 'Reducing transmission in multiple settings is required to eliminate the risk of major Ebola outbreaks: A mathematical modelling study'
 
 ### Installation of ebola_model
 
