@@ -27,7 +27,7 @@ lsa.plot_hosp_pmo(r, h=0.6)
 plt.figure(figsize = [8, 6])
 plt.bar([r'$R_{C}$', r'$p_{f}$', r'$R_V$', r'$R_W$', r'$1-p_h$'],
         lsa.gradients_c, edgecolor='black')
-plt.ylabel(r'Local sensitivity $(\theta(\pi_C, \it{x}))$', fontsize=20, labelpad=10)
+plt.ylabel(r'Local sensitivity $(\chi(\pi_C, \it{x}))$', fontsize=20, labelpad=10)
 plt.xlabel(r'Parameter $(\it{x})$', fontsize=20, labelpad=10)
 plt.xticks(fontsize=18)
 plt.yticks(np.linspace(0, 0.35, 8))
